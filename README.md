@@ -1,8 +1,7 @@
 # BZA
 Project for BZA, LFSR demo app.
 
-Složka bin: zip archiv s release buildem aplikace, přibaleny potřebné dll.
-        - Statická aplikace, zmíněná v dokumentaci, se mi nepodařila sestavit.
+Složka bin: Aplikace LFSRBZA.exe - win32 release build projektu.
 
 Složka document: pdf dokumentace a její zdrojový projekt z overleaf
 
