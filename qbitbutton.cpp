@@ -56,12 +56,12 @@ void QBitButton::changeColor()
          anim4->start(QAbstractAnimation::DeleteWhenStopped);
          }
         if(isFeedback)
-            setStyleSheet("QBitButton {background-color: cyan;}");
+            this->setStyleSheet("QBitButton {background-color: cyan;font: bold \"Times New Roman\";min-width:100px;min-height:100px;font-size: 50px;}");
         else
-            setStyleSheet("QBitButton {background-color: gray;}");
+            this->setStyleSheet("QBitButton {background-color: gray;font: bold \"Times New Roman\";min-width:100px;min-height:100px;font-size: 50px;}");
      }
      else
-         setStyleSheet("QBitButton {background-color: yellow;}");
+         this->setStyleSheet("QBitButton {background-color: yellow;font: bold \"Times New Roman\";min-width:100px;min-height:100px;font-size: 50px;}");
 
 }
 

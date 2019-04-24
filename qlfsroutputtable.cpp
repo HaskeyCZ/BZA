@@ -16,17 +16,18 @@
 
 QLFSROutputTable::QLFSROutputTable(QWidget *parent) : QTableWidget (1, 3, parent)
 {
+
     step = 0;
     QLabel * noStepLbl = new QLabel("Step #",this);
-    noStepLbl->setStyleSheet("QLabel { background-color: green; color:white; }");
+    noStepLbl->setStyleSheet("QLabel { background-color: green; color:white; font-size:32px;}");
                 noStepLbl->setAlignment(Qt::AlignCenter);
 
     QLabel * stateLbl = new QLabel("LFSR State",this);
-    stateLbl->setStyleSheet("QLabel { background-color: green; color:white; }");
+    stateLbl->setStyleSheet("QLabel { background-color: green; color:white; font-size:32px;}");
                 stateLbl->setAlignment(Qt::AlignCenter);
 
     QLabel * outputLbl = new QLabel("Output",this);
-    outputLbl->setStyleSheet("QLabel { background-color: green; color:white; }");
+    outputLbl->setStyleSheet("QLabel { background-color: green; color:white; font-size:32px;}");
                 outputLbl->setAlignment(Qt::AlignCenter);
 
     setCellWidget(0,0,noStepLbl);

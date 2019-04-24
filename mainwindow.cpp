@@ -22,6 +22,7 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
 {
+    setStyleSheet("* { font-size:20px; }");
     playTimer = new QTimer(this);
     playTimer->setInterval(10000);
     connect(playTimer,SIGNAL(timeout()), this, SLOT(animateFeedbackFunction()));
@@ -94,6 +95,7 @@ void MainWindow::paintEvent(QPaintEvent *event)
             drawFeedBackLine(test->LFSRButtons.at(static_cast<int>(x)), lfsrXor, p);
         }
     }
+    p.setPen(QPen(Qt::black, 5));
     p.drawLine( QPoint(lfsrXor->pos().x(), lfsrXor->pos().y()+lfsrXor->height()/2), QPoint(10,lfsrXor->pos().y()+lfsrXor->height()/2));
     p.drawLine( QPoint(10,lfsrXor->pos().y()+lfsrXor->height()/2),QPoint(10,test->LFSRButtons.at(0)->pos().y()+test->LFSRButtons.at(0)->height()));
     p.drawLine( QPoint(10,test->LFSRButtons.at(0)->pos().y()+test->LFSRButtons.at(0)->height()), QPoint(test->LFSRButtons.at(0)->pos().x()+test->LFSRButtons.at(0)->width()/2,test->LFSRButtons.at(0)->pos().y()+test->LFSRButtons.at(0)->height()));
@@ -108,7 +110,8 @@ void MainWindow::paintEvent(QPaintEvent *event)
 
 void MainWindow::drawFeedBackLine(QBitButton * const btn, QLFSRXor *xorWidget, QPainter& p)
 {
-    p.drawLine(QPoint(btn->pos().x()+btn->width()/2, btn->pos().y()+btn->height()/2), QPoint(xorWidget->pos().x()+xorWidget->width()/2, xorWidget->pos().y()+xorWidget->height()/2));
+    p.setPen(QPen(Qt::black, 5));
+    p.drawLine(QPoint(btn->pos().x()+btn->width()/2, btn->pos().y()+btn->height()/2), QPoint(xorWidget->pos().x()+xorWidget->width()/2, xorWidget->pos().y()));
 }
 
 void MainWindow::redrawFeedbackLines()
@@ -126,21 +129,21 @@ void MainWindow::animateFeedbackFunction()
             auto btn = test->LFSRButtons.at(x);
             QLabel * lbl = new QLabel(QString::number(test->data[x]),this);
             labels.append(lbl);
-            lbl->setStyleSheet("QLabel { background-color : red; color : blue; }");
+            lbl->setStyleSheet("QLabel { background-color : red; color : blue;font: bold \"Times New Roman\";min-width:100px;min-height:100px;font-size: 50px; }");
             lbl->setAlignment(Qt::AlignCenter);
             lbl->show();
             QPropertyAnimation * animation;
             animation = new QPropertyAnimation(lbl, "geometry");
             animation->setDuration(3000);
             animation->setStartValue(QRect(btn->pos().x()+btn->width()/2, btn->pos().y()+btn->height()/2,30, 30));
-            animation->setEndValue(QRect(lfsrXor->pos().x()+lfsrXor->width()/2,lfsrXor->pos().y()+lfsrXor->height()/2,30, 30));
+            animation->setEndValue(QRect(lfsrXor->pos().x()+lfsrXor->width()/2,lfsrXor->pos().y(),30, 30));
             animations.append(animation);
          //   qDebug() << animations.size();
         }
     }
 
-    mainOutputLabel = new QLabel(QString("output: ")+QString::number(test->data[test->arraySize-1]),this);
-    mainOutputLabel->setStyleSheet("QLabel { background-color : yellow; color : black; }");
+    mainOutputLabel = new QLabel(QString("out: ")+QString::number(test->data[test->arraySize-1]),this);
+    mainOutputLabel->setStyleSheet("QLabel { background-color : yellow; color : black; font: bold \"Times New Roman\";min-width:100px;min-height:100px;font-size: 30px;}");
     mainOutputLabel->setAlignment(Qt::AlignCenter);
     mainOutputLabel->show();
 
@@ -175,7 +178,7 @@ void MainWindow::animateXorOutputToNewValue(int newValue)
 {
     seqGroup = new QSequentialAnimationGroup();
     xorOutputLabel = new QLabel(QString::number(newValue),this);
-    xorOutputLabel->setStyleSheet("QLabel { background-color : green; color : black; }");
+    xorOutputLabel->setStyleSheet("QLabel { background-color : green; color : black;font: bold \"Times New Roman\";min-width:100px;min-height:100px;font-size: 50px; }");
     xorOutputLabel->setAlignment(Qt::AlignCenter);
     xorOutputLabel->show();
 

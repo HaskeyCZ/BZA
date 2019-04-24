@@ -28,7 +28,7 @@ LFSR::LFSR(QWidget *parent, size_t arraySize) : QWidget(parent)
     for (size_t x = 0; x < arraySize; x++) {
         data[x] = 0;
         QBitButton *button = new QBitButton(x,this,QString::number(data[x]));
-        button->setStyleSheet("QBitButton {background-color: gray;}");
+        button->setStyleSheet("QBitButton {background-color: gray;font: bold \"Times New Roman\";min-width:100px;min-height:100px;font-size: 50px}");
         layout->addWidget(button);
         connect(button, SIGNAL(clicked(size_t)), this, SLOT(buttonClicked(size_t)));
         connect(button, SIGNAL(rightClicked(size_t)), this, SLOT(buttonRightClicked(size_t)));
@@ -53,7 +53,7 @@ int LFSR::ShiftRight()
     for(size_t x = arraySize-1; x>0; x--) {
         data[x] = data[x-1];
     }
-    LFSRButtons.at(0)->setText("Waiting..");
+    LFSRButtons.at(0)->setText("N/A");
     return last;
 }
 
@@ -103,14 +103,14 @@ void LFSR::toogleFeedback(size_t n)
     if (feedback[n] == -1) {
         setFeedback(n);
         auto button = LFSRButtons.at(static_cast<int>(n));
-        button->setStyleSheet("QBitButton {background-color: cyan;}");
+        button->setStyleSheet("QBitButton {background-color: cyan;font: bold \"Times New Roman\";min-width:100px;min-height:100px;font-size: 50px;}");
         button->isFeedback = true;
         button->update();
 
     } else {
         clearFeedback(n);
         auto button = LFSRButtons.at(static_cast<int>(n));
-        button->setStyleSheet("QBitButton {background-color: gray;}");
+        button->setStyleSheet("QBitButton {background-color: gray;font: bold \"Times New Roman\";min-width:100px;min-height:100px;font-size: 50px;}");
         button->isFeedback = false;
         button->update();
 

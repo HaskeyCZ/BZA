@@ -19,7 +19,7 @@ QLFSRXor::QLFSRXor(QWidget *parent) : QWidget(parent)
 {
     QHBoxLayout *layout = new QHBoxLayout;
     setLayout(layout);
-    setMinimumSize(100,100);
+    setMinimumSize(150,150);
     QSizePolicy policy(QSizePolicy::Fixed, QSizePolicy::Maximum);
     setSizePolicy(policy);
 
@@ -30,8 +30,13 @@ void QLFSRXor::paintEvent(QPaintEvent *event)
 {
     QPainter painter;
     painter.begin(this);
+    painter.setPen(QPen(Qt::black, 5));
     painter.drawRect(0, 0, this->width()-1, this->height()-1);
-    painter.drawText(this->width()/2-20, this->height()/2, "XOR");
+    QFont font=painter.font() ;
+     font.setPointSize ( 25 );
+     font.setWeight(QFont::DemiBold);
+     painter.setFont(font);
+    painter.drawText(this->width()/2-50, this->height()/2, "XOR");
     // QWidget::paintEvent(event);
     painter.end();
 }
